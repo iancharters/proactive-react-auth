@@ -1,4 +1,4 @@
-import { types as errorTypes } from 'actions/errors';
+import { types as errorTypes } from 'action/errors';
 
 const initialState = {
   errors: [],

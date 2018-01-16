@@ -1,4 +1,4 @@
-import { types as sessionTypes } from 'actions/session';
+import { types as sessionTypes } from 'action/session';
 
 const initialState = {
   isAuthenticated: false,
