@@ -21,8 +21,11 @@ module.exports = {
     path: paths.BUILD,
     filename: 'bundle.js',
   },
-
-  devtool: 'sourcemap',
+  devServer: {
+    hot: true,
+    port: 3000,
+  },
+  devtool: 'source-map',
 
   plugins: [
     new HtmlWebpackPlugin({
