@@ -54,7 +54,12 @@ class Root extends Component {
         <Header isAuthenticated={isAuthenticated} />
         <Router>
           <Switch>
-            <MatchAuthenticated exact path="/" component={Home} {...authProps} />
+            <MatchAuthenticated
+              exact
+              path="/"
+              component={Home}
+              {...authProps}
+            />
             <RedirectAuthenticated
               path="/signup"
               component={Signup}

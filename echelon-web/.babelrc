@@ -18,6 +18,7 @@
           "underscore": "lodash"
         }
       }
-    ]
+    ],
+    "@babel/plugin-proposal-class-properties"
   ]
 }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 export default class Input extends Component {
   render() {
@@ -25,14 +24,6 @@ export default class Input extends Component {
     );
   }
 }
-
-Input.propTypes = {
-  input: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  label: PropTypes.string,
-  type: PropTypes.string,
-  placeholder: PropTypes.string,
-  meta: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-};
 
 Input.defaultProps = {
   label: '',
