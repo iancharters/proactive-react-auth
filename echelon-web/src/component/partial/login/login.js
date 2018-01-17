@@ -11,11 +11,11 @@ import LoginForm from './login-form';
 // =============================================================================
 // Import SCSS.
 // =============================================================================
-import './login.scss';
+import style from './login.scss';
 
 const Login = () =>
-<div className="login">
-  <div className="container">
+<div className={style.login}>
+  <div className={style.container}>
     <LoginForm />
   </div>
 </div>;

@@ -4,29 +4,35 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 
 // =============================================================================
 // Import actions.
 // =============================================================================
-import { login, createSocket } from 'action/session';
+import { login } from 'action/session';
 
 // =============================================================================
 // Import components.
 // =============================================================================
 import FormInput from 'component/base/form-input';
 
+// =============================================================================
+// Import SCSS.
+// =============================================================================
+import style from '../login.scss';
+
 class LoginForm extends Component {
+  // `redux-form` provides data (form contents) and `store.dispatch`.
   submit = (data, dispatch) => {
     dispatch(login(data));
-    dispatch(createSocket(data));
   };
 
   render() {
+    // Fed as props from `redux-form`
     const { handleSubmit, submitting } = this.props;
 
     return (
       <form
-        className="form-login card"
         onSubmit={handleSubmit(this.submit)}
         noValidate
       >

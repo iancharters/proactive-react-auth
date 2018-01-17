@@ -22,7 +22,6 @@ module.exports = {
     filename: 'bundle.js',
   },
   devServer: {
-    hot: true,
     port: 3000,
   },
   devtool: 'source-map',
@@ -31,7 +30,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(paths.ENTRY, 'index.html'),
     }),
-    new ExtractTextPlugin('bundle.css'),
+    new ExtractTextPlugin({
+      filename: 'bundle.css',
+      allChunks: true,
+      disable: true,
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development'),

@@ -14,20 +14,22 @@ import { logout } from 'action/session';
 // =============================================================================
 import style from './header.scss';
 
-const Header = ({isAuthenticated}) => {
+const Header = ({ isAuthenticated, currentUser }) => {
   const visibility = isAuthenticated
     ? { display: 'block' }
     : { display: 'none' };
 
   return (
-    <div className={style.header}  style={visibility}>
-      HEADER
+    <div className={style.header} style={visibility}>
+      HEADER -> {currentUser.username}
     </div>
   );
 };
 
 Header.defaultProps = {
-  username: '',
+  currentUser: {
+    username: '',
+  },
   isAuthenticated: false,
 };
 

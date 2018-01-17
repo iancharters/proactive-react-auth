@@ -1,3 +1,9 @@
+// =============================================================================
+// Import modules.
+// =============================================================================
+import api from 'utils/api';
+import { reset } from 'redux-form';
+
 export const types = {
   LOGIN_REQUEST: 'SESSION/LOGIN_REQUEST',
   SIGNUP_REQUEST: 'SESSION/SIGNUP_REQUEST',
@@ -11,8 +17,19 @@ export const types = {
   CONNECT_FAILURE: 'SESSION/CONNECT_FAILURE',
 };
 
-// saga
-export const login = data => ({ type: types.LOGIN_REQUEST, data });
+// Rework later on to suppress errors in console.
+export const login = data => {
+  return dispatch => {
+    dispatch({ type: types.LOGIN_REQUEST });
+
+    return api.post('/sessions', data).then(response => {
+      response.data.meta.token === undefined
+        ? dispatch({ type: types.AUTHENTICATION_FAILURE })
+        : dispatch({ type: types.AUTHENTICATION_SUCCESS, response });
+    }).catch(err => console.log(err));
+  };
+};
+
 export const signup = data => ({ type: types.SIGNUP_REQUEST, data });
 export const logout = () => ({ type: types.LOGOUT });
 export const authenticate = () => ({ type: types.AUTHENTICATION_REQUEST });

@@ -51,7 +51,10 @@ class Root extends Component {
 
     return (
       <div>
-        <Header isAuthenticated={isAuthenticated} />
+        <Header
+          isAuthenticated={isAuthenticated}
+          currentUser={this.props.currentUser}
+        />
         <Router>
           <Switch>
             <MatchAuthenticated

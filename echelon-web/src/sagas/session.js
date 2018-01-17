@@ -107,27 +107,9 @@ function* authenticateSaga() {
   yield* takeEvery(sessionTypes.AUTHENTICATION_REQUEST, callAuthenticate);
 }
 
-//  TODO: This is not correct.  We should be calling this inside of
-// callAuthenticate, I think.  Logic being that callAuthenticate is called every
-// time you load the page while still logged in.  As it stands if you drop your
-// connection I think you will have to re login, which is not ideal.
-
-function* callConnect({ data }) {
-  const conn = socket(data.email);
-  yield put({
-    type: sessionTypes.CONNECT_SUCCESS,
-    payload: { channel: conn.channel, socket: conn.socket },
-  });
-}
-
-function* connectionSaga() {
-  yield* takeEvery(sessionTypes.CONNECT_REQUEST, callConnect);
-}
-
 export default [
   loginSaga,
   signupSaga,
   logoutSaga,
   authenticateSaga,
-  connectionSaga,
 ];

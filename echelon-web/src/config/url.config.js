@@ -1,2 +1,1 @@
-export const API_SOCKET = 'ws://localhost:4000/socket';
-export const API_URL = 'http://localhost:4000/api';
+export const API = 'http://localhost:4000/api';
