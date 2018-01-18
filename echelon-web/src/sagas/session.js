@@ -4,8 +4,8 @@ import { call, put } from 'redux-saga/effects';
 import { reset } from 'redux-form';
 
 import api from 'utils/api';
-import { types as sessionTypes } from 'actions/session';
-import { types as errorTypes } from 'actions/errors';
+import { sessionTypes } from 'action/constant';
+import { errorTypes } from 'action/constant';
 
 import { socket } from 'utils/socket';
 
@@ -107,27 +107,9 @@ function* authenticateSaga() {
   yield* takeEvery(sessionTypes.AUTHENTICATION_REQUEST, callAuthenticate);
 }
 
-//  TODO: This is not correct.  We should be calling this inside of
-// callAuthenticate, I think.  Logic being that callAuthenticate is called every
-// time you load the page while still logged in.  As it stands if you drop your
-// connection I think you will have to re login, which is not ideal.
-
-function* callConnect({ data }) {
-  const conn = socket(data.email);
-  yield put({
-    type: sessionTypes.CONNECT_SUCCESS,
-    payload: { channel: conn.channel, socket: conn.socket },
-  });
-}
-
-function* connectionSaga() {
-  yield* takeEvery(sessionTypes.CONNECT_REQUEST, callConnect);
-}
-
 export default [
   loginSaga,
   signupSaga,
   logoutSaga,
   authenticateSaga,
-  connectionSaga,
 ];

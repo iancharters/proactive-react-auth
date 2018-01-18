@@ -1,13 +1,9 @@
-import { types as sessionTypes } from 'action/session';
+import { sessionTypes } from 'action/constant';
 
 const initialState = {
   isAuthenticated: false,
   willAuthenticate: true,
   currentUser: {},
-  conn: {
-    socket: null,
-    channel: null,
-  },
 };
 
 export default function(state = initialState, action) {
@@ -27,24 +23,10 @@ export default function(state = initialState, action) {
         ...state,
         isAuthenticated: true,
         willAuthenticate: false,
-        currentUser: action.response.data,
-      };
-    case sessionTypes.CONNECT_SUCCESS:
-      return {
-        ...state,
-        conn: {
-          socket: action.payload.socket,
-          channel: action.payload.channel,
-        },
-      };
-    case sessionTypes.CONNECT_FAILURE:
-      console.log('FIRIN');
-      console.log('FAILURE');
-      console.log('FIRING');
-      return {
-        ...state,
+        currentUser: action.response.data.data,
       };
     case sessionTypes.AUTHENTICATION_FAILURE:
+    console.log("AUTH FAILURE")
       return {
         ...state,
         willAuthenticate: false,

@@ -35,8 +35,10 @@ class Root extends Component {
     const token = localStorage.getItem('token');
 
     if (token) {
+      console.log("has token")
       this.props.authenticate();
     } else {
+      console.log("no token")
       this.props.unauthenticate();
     }
   }
@@ -51,10 +53,18 @@ class Root extends Component {
 
     return (
       <div>
-        <Header isAuthenticated={isAuthenticated} />
+        <Header
+          isAuthenticated={isAuthenticated}
+          currentUser={this.props.currentUser}
+        />
         <Router>
           <Switch>
-            <MatchAuthenticated exact path="/" component={Home} {...authProps} />
+            <MatchAuthenticated
+              exact
+              path="/"
+              component={Home}
+              {...authProps}
+            />
             <RedirectAuthenticated
               path="/signup"
               component={Signup}

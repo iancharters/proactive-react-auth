@@ -10,11 +10,12 @@
   },
   "scripts": {
     "clean": "rimraf build/*",
-    "build": "npm run clean && webpack --config ./config/webpack/webpack.config.js",
-    "dev": "npm run clean && webpack-dev-server --config ./config/webpack/webpack.config.js --content-base build --historyApiFallback --host 0.0.0.0",
+    "build": "webpack --config ./config/webpack/webpack.config.js",
+    "dev": "webpack-dev-server --config ./config/webpack/webpack.config.js --content-base build --historyApiFallback --host 0.0.0.0 --hot --inline",
     "lint": "eslint ."
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "css-js-loader": "^0.4.1",
     "history": "^4.7.2",
     "react": "^16.2.0",
@@ -28,16 +29,20 @@
     "redux-form": "^7.2.0",
     "redux-thunk": "^2.2.0",
     "rimraf": "^2.6.2",
+    "semantic-ui": "^2.2.13",
+    "semantic-ui-react": "^0.77.2",
     "value-loader": "^0.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.37",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.37",
     "@babel/preset-env": "^7.0.0-beta.37",
     "@babel/preset-react": "^7.0.0-beta.37",
     "autoprefixer": "^7.2.5",
     "babel-eslint": "^8.2.1",
     "babel-loader": "^8.0.0-beta.0",
     "babel-plugin-module-resolver": "^3.0.0",
+    "classnames": "^2.2.5",
     "css-loader": "^0.28.8",
     "eslint": "^4.15.0",
     "eslint-config-airbnb": "^16.1.0",
