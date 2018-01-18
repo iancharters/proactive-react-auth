@@ -4,8 +4,8 @@ import { call, put } from 'redux-saga/effects';
 import { reset } from 'redux-form';
 
 import api from 'utils/api';
-import { types as sessionTypes } from 'actions/session';
-import { types as errorTypes } from 'actions/errors';
+import { sessionTypes } from 'action/constant';
+import { errorTypes } from 'action/constant';
 
 import { socket } from 'utils/socket';
 

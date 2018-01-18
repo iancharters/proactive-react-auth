@@ -9,7 +9,7 @@ import { reducer as form } from 'redux-form';
 // =============================================================================
 import session from 'reducer/session';
 import errors from 'reducer/errors';
-import { types as sessionTypes } from 'action/session';
+import { sessionTypes } from 'action/constant';
 
 const appReducer = combineReducers({
   form,

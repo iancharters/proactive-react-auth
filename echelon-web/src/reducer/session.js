@@ -1,4 +1,4 @@
-import { types as sessionTypes } from 'action/session';
+import { sessionTypes } from 'action/constant';
 
 const initialState = {
   isAuthenticated: false,
@@ -9,7 +9,6 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case sessionTypes.LOGIN_REQUEST:
-    console.log("TEST")
       return {
         ...state,
         willAuthenticate: true,

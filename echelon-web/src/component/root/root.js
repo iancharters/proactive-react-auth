@@ -35,8 +35,10 @@ class Root extends Component {
     const token = localStorage.getItem('token');
 
     if (token) {
+      console.log("has token")
       this.props.authenticate();
     } else {
+      console.log("no token")
       this.props.unauthenticate();
     }
   }

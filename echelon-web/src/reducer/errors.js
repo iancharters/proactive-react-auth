@@ -1,4 +1,4 @@
-import { types as errorTypes } from 'action/errors';
+import { errorTypes } from 'action/constant';
 
 const initialState = {
   errors: [],
@@ -7,6 +7,7 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case errorTypes.NEW_ERROR:
+        console.log(action.message + "lol")
       return {
         ...state,
         errors: [...state.errors, action.message],
