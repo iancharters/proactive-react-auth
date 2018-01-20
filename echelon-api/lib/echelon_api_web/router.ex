@@ -25,6 +25,7 @@ defmodule EchelonAPIWeb.Router do
       pipe_through :unauthorized
 
       post "/sessions", SessionController, :create
+      # post "/sessions/refresh", SessionController, :refresh2
       resources "/users", UserController, only: [:create]
     end
 

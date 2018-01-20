@@ -38,7 +38,7 @@ defmodule EchelonAPIWeb.Endpoint do
     key: "_echelon_api_key",
     signing_salt: "xLcOulwY"
 
-  plug CORSPlug, origin: ["*"]
+  plug CORSPlug
 
   plug EchelonAPIWeb.Router
 

@@ -18,6 +18,11 @@ export default function(state = initialState, action) {
         ...state,
         willAuthenticate: true,
       };
+    case sessionTypes.AUTHENTICATION_REQUEST:
+      return {
+        ...state,
+        willAuthenticate: true,
+      };
     case sessionTypes.AUTHENTICATION_SUCCESS:
       return {
         ...state,
@@ -26,7 +31,6 @@ export default function(state = initialState, action) {
         currentUser: action.response.data.data,
       };
     case sessionTypes.AUTHENTICATION_FAILURE:
-    console.log("AUTH FAILURE")
       return {
         ...state,
         willAuthenticate: false,

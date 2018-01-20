@@ -3,7 +3,9 @@ import axios from 'axios';
 import { API } from 'config/url.config';
 
 function headers() {
-  const token = JSON.parse(localStorage.getItem('token'));
+  const token = localStorage.getItem('token');
+
+  // axios.defaults.withCredentials = true;
 
   return {
     Accept: 'application/json',
@@ -28,7 +30,7 @@ export default {
 
   post(url, data) {
     return axios
-      .post(`${API}${url}`, data, { headers: headers() })
+      .post(`${API}${url}`, data, { headers: headers(), withCredentials: true })
       .catch(error => error.response);
   },
 
