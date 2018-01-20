@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // =============================================================================
 // Import actions
 // =============================================================================
-import { authenticate, unauthenticate } from 'action/session';
+import { authenticate, unauthenticate, logout } from 'action/session';
 
 // =============================================================================
 // Import partials.
@@ -34,13 +34,7 @@ class Root extends Component {
   componentDidMount() {
     const token = localStorage.getItem('token');
 
-    if (token) {
-      console.log("has token")
-      this.props.authenticate();
-    } else {
-      console.log("no token")
-      this.props.unauthenticate();
-    }
+    token ? this.props.authenticate() : this.props.unauthenticate();
   }
 
   render() {
@@ -56,6 +50,7 @@ class Root extends Component {
         <Header
           isAuthenticated={isAuthenticated}
           currentUser={this.props.currentUser}
+          logout={this.props.logout}
         />
         <Router>
           <Switch>
@@ -90,6 +85,7 @@ const mapDispatchToProps = dispatch => ({
   dispatch,
   authenticate: () => dispatch(authenticate()),
   unauthenticate: () => dispatch(unauthenticate()),
+  logout: () => dispatch(logout()),
 });
 
 const mapStateProps = state => ({

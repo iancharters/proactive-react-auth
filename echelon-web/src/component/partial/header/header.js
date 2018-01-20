@@ -14,7 +14,7 @@ import { logout } from 'action/session';
 // =============================================================================
 import style from './header.scss';
 
-const Header = ({ isAuthenticated, currentUser }) => {
+const Header = ({ isAuthenticated, currentUser, logout }) => {
   const visibility = isAuthenticated
     ? { display: 'block' }
     : { display: 'none' };
@@ -22,6 +22,9 @@ const Header = ({ isAuthenticated, currentUser }) => {
   return (
     <div className={style.header} style={visibility}>
       HEADER -> {currentUser.username}
+      <div style={{float:'right'}}>
+        <button onClick={logout}>LOGOUT</button>
+      </div>
     </div>
   );
 };

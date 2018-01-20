@@ -31,6 +31,7 @@ defmodule EchelonAPIWeb.SessionController do
   end
 
   def refresh(conn, _params) do
+    IO.puts "test"
     user = Accounts.get_current_user(conn)
 
     with jwt = Accounts.get_current_token(conn),
@@ -41,5 +42,13 @@ defmodule EchelonAPIWeb.SessionController do
       |> put_status(:ok)
       |> render("show.json", user: user, jwt: new_jwt)
     end
+  end
+
+  def refresh2(conn, _params) do
+    IO.inspect conn
+
+    conn
+    |> put_status(:ok)
+    |> render("delete.json")
   end
 end
