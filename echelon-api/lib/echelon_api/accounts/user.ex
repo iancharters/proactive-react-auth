@@ -12,8 +12,6 @@ defmodule EchelonAPI.Accounts.User do
     field :username, :string
     field :is_staff, :boolean
     field :is_superuser, :boolean
-    field :bittrex_api_key, :string
-    field :bittrex_api_secret, :string
     field :last_login, :naive_datetime
 
     timestamps()
@@ -22,7 +20,7 @@ defmodule EchelonAPI.Accounts.User do
   @doc false
   def superuser_changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:name, :username, :email, :is_staff, :is_superuser, :bittrex_api_key, :bittrex_api_secret])
+    |> cast(attrs, [:name, :username, :email, :is_staff, :is_superuser])
     |> validate_required([:name, :username, :email])
     |> validate_length(:username, min: 1, max: 20)
     |> validate_format(:email, ~r/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/)
@@ -33,7 +31,7 @@ defmodule EchelonAPI.Accounts.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:name, :username, :email, :bittrex_api_key, :bittrex_api_secret])
+    |> cast(attrs, [:name, :username, :email])
     |> validate_required([:name, :username, :email])
     |> validate_length(:username, min: 1, max: 20)
     |> validate_format(:email, ~r/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/)

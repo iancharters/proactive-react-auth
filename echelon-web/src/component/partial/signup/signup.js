@@ -3,10 +3,16 @@
 // =============================================================================
 import React from 'react';
 
-const Signup = () =>
-<div>
-  SIGNUP COMPONENT
-</div>;
+// =============================================================================
+// Import partials.
+// =============================================================================
+import SignupForm from './signup-form';
+
+const Signup = () => (
+  <div>
+    <SignupForm />
+  </div>
+);
 
 Signup.displayName = 'Partial/Signup';
 
