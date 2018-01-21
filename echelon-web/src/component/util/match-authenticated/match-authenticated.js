@@ -1,5 +1,13 @@
+// =============================================================================
+// Import modules.
+// =============================================================================
 import React from 'react';
 import { Route, Redirect } from 'react-router';
+
+// =============================================================================
+// Import utility components.
+// =============================================================================
+import Content from 'component/util/content';
 
 const MatchAuthenticated = ({
   path,
@@ -16,7 +24,7 @@ const MatchAuthenticated = ({
       path={path}
       render={props => {
         if (isAuthenticated) {
-          return <RouteComponent {...props} />;
+          return <Content component={component} props={props} />;
         }
         if (willAuthenticate) {
           return null;

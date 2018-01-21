@@ -21,13 +21,7 @@ import Logo from 'asset/image/logo.png';
 // =============================================================================
 // Import bases.
 // =============================================================================
-import {
-  Container,
-  Grid,
-  Image,
-  List,
-  Menu,
-} from 'semantic-ui-react';
+import { Container, Grid, Image, Menu } from 'semantic-ui-react';
 
 const Header = ({ currentUser, logout }) => {
   return (
@@ -40,9 +34,11 @@ const Header = ({ currentUser, logout }) => {
         <Menu.Item as="a">Top</Menu.Item>
         <Menu.Item as="a">Section 1</Menu.Item>
         <Menu.Item as="a">Section 2</Menu.Item>
-        <Menu.Menu position='right'>
+        <Menu.Menu position="right">
           <Menu.Item>Welcome, {currentUser.username}.</Menu.Item>
-          <Menu.Item as="a" onClick={logout}>Logout</Menu.Item>
+          <Menu.Item as="a" onClick={logout}>
+            Logout
+          </Menu.Item>
         </Menu.Menu>
       </Container>
     </Menu>
@@ -53,7 +49,6 @@ Header.defaultProps = {
   currentUser: {
     username: '',
   },
-  isAuthenticated: false,
 };
 
 Header.displayName = 'Partial/Header';
