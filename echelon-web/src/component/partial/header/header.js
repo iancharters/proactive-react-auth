@@ -19,13 +19,9 @@ import style from './header.scss';
 // =============================================================================
 import { Grid } from 'semantic-ui-react';
 
-const Header = ({ isAuthenticated, currentUser, logout }) => {
-  const visibility = isAuthenticated
-    ? { display: 'block' }
-    : { display: 'none' };
-
+const Header = ({ currentUser, logout }) => {
   return (
-    <div className={style.header} style={visibility}>
+    <div className={style.header}>
       HEADER -> {currentUser.username}
       <div style={{ float: 'right' }}>
         <button onClick={logout}>LOGOUT</button>
