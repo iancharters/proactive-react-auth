@@ -51,12 +51,14 @@ class Root extends Component {
     };
 
     return (
-      <div style={{width: '100%'}}>
-        <Header
-          isAuthenticated={isAuthenticated}
-          currentUser={this.props.currentUser}
-          logout={this.props.logout}
-        />
+      <div style={{ width: '100%' }}>
+        {isAuthenticated ? (
+          <Header
+            isAuthenticated={isAuthenticated}
+            currentUser={this.props.currentUser}
+            logout={this.props.logout}
+          />
+        ) : null}
         <Router>
           <Switch>
             <MatchAuthenticated
@@ -78,7 +80,7 @@ class Root extends Component {
             <Route component={NotFound} />
           </Switch>
         </Router>
-        <Footer isAuthenticated={isAuthenticated} />
+        {isAuthenticated ? <Footer isAuthenticated={isAuthenticated} /> : null}
       </div>
     );
   }

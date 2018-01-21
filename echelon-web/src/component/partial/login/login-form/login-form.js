@@ -4,7 +4,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
-import classNames from 'classnames';
 
 // =============================================================================
 // Import actions.
@@ -24,7 +23,7 @@ import {
   Image,
   Message,
   Segment,
-  Icon
+  Icon,
 } from 'semantic-ui-react';
 
 // =============================================================================
@@ -37,62 +36,50 @@ import style from '../login.scss';
 // =============================================================================
 import Logo from 'asset/image/logo.png';
 
-class LoginForm extends Component {
-  // `redux-form` provides data (form contents) and `store.dispatch`.
-  submit = (data, dispatch) => {
-    dispatch(login(data));
-  };
+const LoginForm = ({ handleSubmit, submitting }) => {
+  const submit = (data, dispatch) => dispatch(login(data));
 
-  render() {
-    // Fed as props from `redux-form`
-    const { handleSubmit, submitting } = this.props;
+  return (
+    <Grid textAlign="center" style={{ height: '100%' }} verticalAlign="middle">
+      <Grid.Column style={{ maxWidth: 450 }}>
+        <Header as="h2" color="teal" textAlign="center">
+          <Image src={Logo} /> Echelon
+        </Header>
+        <Form size="large" onSubmit={handleSubmit(submit)}>
+          <Segment stacked>
+            <Field
+              name="email"
+              component={LabelInputField}
+              label={{
+                content: <Icon color="teal" name="user" size="large" />,
+              }}
+              labelPosition="left"
+              placeholder="Username"
+            />
 
-    return (
-      <Grid
-        textAlign="center"
-        style={{ height: '100%' }}
-        verticalAlign="middle"
-      >
-        <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as="h2" color="teal" textAlign="center">
-            <Image src={Logo} /> Echelon
-          </Header>
-          <Form size="large" onSubmit={handleSubmit(this.submit)}>
-            <Segment stacked>
-              <Field
-                name="email"
-                component={LabelInputField}
-                label={{
-                  content: <Icon color="teal" name="user" size="large" />,
-                }}
-                labelPosition="left"
-                placeholder="Username"
-              />
+            <Field
+              name="password"
+              component={LabelInputField}
+              type="password"
+              label={{
+                content: <Icon color="teal" name="lock" size="large" />,
+              }}
+              labelPosition="left"
+              placeholder="Password"
+            />
 
-              <Field
-                name="password"
-                component={LabelInputField}
-                type="password"
-                label={{
-                  content: <Icon color="teal" name="lock" size="large" />,
-                }}
-                labelPosition="left"
-                placeholder="Password"
-              />
-
-              <Button color="teal" fluid size="large">
-                {submitting ? 'Logging in...' : 'Login'}
-              </Button>
-            </Segment>
-          </Form>
-          <Message>
-            <Link to="/signup">Create a new account</Link>
-          </Message>
-        </Grid.Column>
-      </Grid>
-    );
-  }
-}
+            <Button color="teal" fluid size="large">
+              {submitting ? 'Logging in...' : 'Login'}
+            </Button>
+          </Segment>
+        </Form>
+        <Message>
+          <Link to="/signup">Create a new account</Link>
+        </Message>
+      </Grid.Column>
+    </Grid>
+  );
+};
 
 const validate = values => {
   const errors = {};

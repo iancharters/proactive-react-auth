@@ -14,11 +14,13 @@ import LoginForm from './login-form';
 import style from './login.scss';
 
 const Login = () =>
-  <div className={style.outter}>
+<div className={style.outer}>
+  <div className={style.middle}>
     <div className={style.inner}>
       <LoginForm />
     </div>
-  </div>;
+  </div>
+</div>;
 
 Login.displayName = 'Partial/Login';
 

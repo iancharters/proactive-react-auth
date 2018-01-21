@@ -8,9 +8,18 @@ import React from 'react';
 // =============================================================================
 import SignupForm from './signup-form';
 
+// =============================================================================
+// Import CSS.
+// =============================================================================
+import style from './signup.scss';
+
 const Signup = () => (
-  <div>
-    <SignupForm />
+  <div className={style.outer}>
+    <div className={style.middle}>
+      <div className={style.inner}>
+        <SignupForm />
+      </div>
+    </div>
   </div>
 );
 
