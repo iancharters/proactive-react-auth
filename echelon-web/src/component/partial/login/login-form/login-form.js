@@ -15,11 +15,27 @@ import { login } from 'action/session';
 // Import components.
 // =============================================================================
 import FormInput from 'component/base/form-input';
+import { LabelInputField } from 'react-semantic-redux-form';
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Image,
+  Message,
+  Segment,
+  Icon
+} from 'semantic-ui-react';
 
 // =============================================================================
 // Import SCSS.
 // =============================================================================
 import style from '../login.scss';
+
+// =============================================================================
+// Import images.
+// =============================================================================
+import Logo from 'asset/image/logo.png';
 
 class LoginForm extends Component {
   // `redux-form` provides data (form contents) and `store.dispatch`.
@@ -32,35 +48,48 @@ class LoginForm extends Component {
     const { handleSubmit, submitting } = this.props;
 
     return (
-      <form
-        onSubmit={handleSubmit(this.submit)}
-        noValidate
+      <Grid
+        textAlign="center"
+        style={{ height: '100%' }}
+        verticalAlign="middle"
       >
-        <h3>Login to Echelon</h3>
-        <Field
-          name="email"
-          type="email"
-          component={FormInput}
-          placeholder="Email"
-        />
-        <Field
-          name="password"
-          type="password"
-          component={FormInput}
-          placeholder="Password"
-        />
-        <button
-          type="submit"
-          disabled={submitting}
-          className="btn btn-primary btn-lg btn-block"
-        >
-          {submitting ? 'Logging in...' : 'Login'}
-        </button>
-        <hr />
-        <Link to="/signup" className="btn">
-          Create a new account
-        </Link>
-      </form>
+        <Grid.Column style={{ maxWidth: 450 }}>
+          <Header as="h2" color="teal" textAlign="center">
+            <Image src={Logo} /> Echelon
+          </Header>
+          <Form size="large" onSubmit={handleSubmit(this.submit)}>
+            <Segment stacked>
+              <Field
+                name="email"
+                component={LabelInputField}
+                label={{
+                  content: <Icon color="teal" name="user" size="large" />,
+                }}
+                labelPosition="left"
+                placeholder="Username"
+              />
+
+              <Field
+                name="password"
+                component={LabelInputField}
+                type="password"
+                label={{
+                  content: <Icon color="teal" name="lock" size="large" />,
+                }}
+                labelPosition="left"
+                placeholder="Password"
+              />
+
+              <Button color="teal" fluid size="large">
+                {submitting ? 'Logging in...' : 'Login'}
+              </Button>
+            </Segment>
+          </Form>
+          <Message>
+            <Link to="/signup">Create a new account</Link>
+          </Message>
+        </Grid.Column>
+      </Grid>
     );
   }
 }

@@ -1,50 +1,8 @@
-@import './variables.scss';
-
-.login {
+.inner { 
   height: 100%;
-  width: 100%;
-  background: $grey;
-  padding: 40px;
 }
 
-.form-login, .form-signup {
+.outter {
+  width: 50%;
   margin: 0 auto;
-  max-width: 330px;
-  padding: 15px;
-  background: white;
-}
-
-.form-login {
-  input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    width: 400px;
-  }
-
-  input[type="password"] {
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
-    margin-bottom: 25px;
-  }
-}
-
-.form-signup {
-  input[name="name"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
-  input[name="password"] {
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
-    margin-bottom: 25px;
-  }
-
-  input[type="email"] {
-    margin-bottom: -1px;
-    border-radius: 0;
-    border-radius: 0;
-  }
 }

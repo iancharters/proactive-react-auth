@@ -11,6 +11,11 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { authenticate, unauthenticate, logout } from 'action/session';
 
 // =============================================================================
+// Import bases.
+// =============================================================================
+import { Grid } from 'semantic-ui-react';
+
+// =============================================================================
 // Import partials.
 // =============================================================================
 import Footer from 'component/partial/footer';
@@ -46,7 +51,7 @@ class Root extends Component {
     };
 
     return (
-      <div>
+      <div style={{width: '100%'}}>
         <Header
           isAuthenticated={isAuthenticated}
           currentUser={this.props.currentUser}
