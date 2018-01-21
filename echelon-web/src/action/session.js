@@ -6,11 +6,17 @@ import { reset } from 'redux-form';
 
 import { sessionTypes as types, errorTypes } from './constant';
 
-function setCurrentUser(token) {
+const setCurrentUser = token => {
   localStorage.setItem('token', token);
-}
+};
 
-// Rework later on to suppress errors in console.
+const isGoodRequest = req => {
+  return req.status === 200 || 201 ? true : false;
+};
+
+//TODO: Rework later on to suppress errors in console.
+//TODO: catch is not what I want.  I need to do error checking in then.
+
 export const login = data => {
   let error;
 
@@ -63,7 +69,31 @@ export const unauthenticate = () => {
 };
 
 export const logout = () => {
+  api.delete('/sessions');
+  localStorage.removeItem('token');
+
   return { type: types.LOGOUT };
 };
 
-export const signup = data => ({ type: types.SIGNUP_REQUEST, data });
+export const signup = data => {
+  let error;
+
+  return dispatch => {
+    dispatch({ type: types.SIGNUP_REQUEST });
+    return api
+      .post('/users', data)
+      .then(response => {
+        error = response.data.errors;
+        if (isGoodRequest(response)) {
+          setCurrentUser(response.data.meta.token);
+          dispatch({ type: types.AUTHENTICATION_SUCCESS, response });
+        } else {
+          dispatch({ type: types.AUTHENTICATION_FAILURE });
+          dispatch({ type: errorTypes.NEW_ERROR, message: error });
+        }
+      })
+      .catch(err => {
+        dispatch({ type: errorTypes.NEW_ERROR, message: error });
+      });
+  };
+};
