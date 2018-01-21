@@ -19,7 +19,6 @@ const isGoodRequest = req => {
 
 export const login = data => {
   let error;
-  console.log(data)
 
   return dispatch => {
     dispatch({ type: types.LOGIN_REQUEST });
