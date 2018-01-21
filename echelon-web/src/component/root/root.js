@@ -80,7 +80,7 @@ class Root extends Component {
             <Route component={NotFound} />
           </Switch>
         </Router>
-        <Footer isAuthenticated={isAuthenticated} />
+        {isAuthenticated ? <Footer isAuthenticated={isAuthenticated} /> : null}
       </div>
     );
   }

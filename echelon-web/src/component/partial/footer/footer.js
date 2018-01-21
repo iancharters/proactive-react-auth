@@ -9,13 +9,9 @@ import { connect } from 'react-redux';
 // =============================================================================
 import style from './footer.scss';
 
-const Footer = ({isAuthenticated}) => {
-  const visibility = isAuthenticated
-    ? { display: 'block' }
-    : { display: 'none' };
-
+const Footer = () => {
   return (
-    <div className={style.footer} style={visibility}>
+    <div className={style.footer}>
       FOOTER
     </div>
   );
