@@ -23,14 +23,10 @@ import Logo from 'asset/image/logo.png';
 // =============================================================================
 import {
   Container,
-  Divider,
-  Dropdown,
   Grid,
-  Header as sHeader,
   Image,
   List,
   Menu,
-  Segment,
 } from 'semantic-ui-react';
 
 const Header = ({ currentUser, logout }) => {
@@ -63,10 +59,3 @@ Header.defaultProps = {
 Header.displayName = 'Partial/Header';
 
 export default Header;
-
-//   <div className={style.header}>
-//   HEADER -> {currentUser.username}
-//   <div style={{ float: 'right' }}>
-//     <button onClick={logout}>LOGOUT</button>
-//   </div>
-// </div>
