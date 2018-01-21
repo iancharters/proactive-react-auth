@@ -8,7 +8,17 @@ import { Link } from 'react-router-dom';
 // =============================================================================
 // Import bases.
 // =============================================================================
-import FormInput from 'component/base/form-input';
+import { LabelInputField } from 'react-semantic-redux-form';
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Image,
+  Message,
+  Segment,
+  Icon
+} from 'semantic-ui-react';
 
 // =============================================================================
 // Import actions.
@@ -19,52 +29,52 @@ const SignupForm = ({handleSubmit, submitting}) => {
   const submit = (data, dispatch) => dispatch(signup(data));
 
   return (
-    <form
-      className="form-signup card"
-      onSubmit={handleSubmit(submit)}
-      noValidate
+    <Grid
+      textAlign="center"
+      style={{ height: '100%' }}
+      verticalAlign="middle"
     >
-      <h3>Create an account</h3>
-      <Field
-        name="name"
-        type="text"
-        component={FormInput}
-        placeholder="Full name"
-        className="form-control"
-      />
-      <Field
-        name="username"
-        type="text"
-        component={FormInput}
-        placeholder="Username"
-        className="form-control"
-      />
-      <Field
-        name="email"
-        type="email"
-        component={FormInput}
-        placeholder="Email"
-        className="form-control"
-      />
-      <Field
-        name="password"
-        type="password"
-        component={FormInput}
-        placeholder="Password"
-        className="form-control"
-      />
-      <button
-        type="submit"
-        disabled={submitting}
-        className="btn btn-primary btn-lg btn-block"
-      >
-        {submitting ? 'Submitting...' : 'Sign up'}
-      </button>
-      <hr />
-      <Link to="/login" className="btn">
-        Login to your account
-      </Link>
-    </form>
+      <Grid.Column style={{ maxWidth: 450 }}>
+        <Header as="h2" color="teal" textAlign="center">
+          Register a New User
+        </Header>
+        <Form size="large" onSubmit={handleSubmit(submit)}>
+          <Segment stacked>
+            <Field
+              name="name"
+              component={LabelInputField}
+              placeholder="Name"
+            />
+            
+            <Field
+              name="username"
+              component={LabelInputField}
+              placeholder="Username"
+            />
+
+            <Field
+              name="email"
+              component={LabelInputField}
+              placeholder="Email"
+            />
+
+            <Field
+              name="password"
+              component={LabelInputField}
+              type="password"
+              placeholder="Password"
+            />
+
+            <Button color="teal" fluid size="large">
+              {submitting ? 'Registering...' : 'Signup'}
+            </Button>
+          </Segment>
+        </Form>
+        <Message>
+          <Link to="/login">Login to Existing Account</Link>
+        </Message>
+      </Grid.Column>
+    </Grid>
   );
 };
 
@@ -105,3 +115,50 @@ export default reduxForm({
   form: 'signup',
   validate,
 })(SignupForm);
+
+{/* <form
+  className="form-signup card"
+  onSubmit={handleSubmit(submit)}
+  noValidate
+>
+  <h3>Create an account</h3>
+  <Field
+    name="name"
+    type="text"
+    component={FormInput}
+    placeholder="Full name"
+    className="form-control"
+  />
+  <Field
+    name="username"
+    type="text"
+    component={FormInput}
+    placeholder="Username"
+    className="form-control"
+  />
+  <Field
+    name="email"
+    type="email"
+    component={FormInput}
+    placeholder="Email"
+    className="form-control"
+  />
+  <Field
+    name="password"
+    type="password"
+    component={FormInput}
+    placeholder="Password"
+    className="form-control"
+  />
+  <button
+    type="submit"
+    disabled={submitting}
+    className="btn btn-primary btn-lg btn-block"
+  >
+    {submitting ? 'Submitting...' : 'Sign up'}
+  </button>
+  <hr />
+  <Link to="/login" className="btn">
+    Login to your account
+  </Link>
+</form> */}
